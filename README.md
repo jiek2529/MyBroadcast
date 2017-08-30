@@ -138,6 +138,12 @@ registerReceiver(receiver, intentFilter);
 
 2. __当一个app中使用了多个同priority的广播接收器时，最先注册的会优先收到广播； 当使用了abortReceiver中断时，他也能中断同级别的向后传递。__
 
+3. 友好使用abortReceiver
+```
+if(isOrderedBroadcast()) {//当为有序广播时，可进行流产处理。
+    abortBroadcast();
+}
+```
 
 
 ##总结自定义权限广播
@@ -153,7 +159,11 @@ registerReceiver(receiver, intentFilter);
 
 ##android 6.0(360n5) 上进行测试
 
-1.
+1. 自定义权限的apk签名差异安装, 可以直接安装
+2. 自定义权限的广播发送
+    1.　未请求权限时，也能正常收到广播。
+    2. dangerous 的权限不用请求也能发送。（但motorola　6.0不申请广播__发不出__。）
+3. 自定义权限的广播接收器带priority时，同级别的abortReceiver也能被优先注册的执行时流产。
 
 ------
 

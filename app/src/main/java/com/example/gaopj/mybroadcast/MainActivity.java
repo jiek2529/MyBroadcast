@@ -31,12 +31,12 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (Build.VERSION.SDK_INT >= 23) {//权限请求是异步的，不阻塞UI线程。 20170829;   在android 8.0 26 版本系统上如果不进行申请权限，广播是无法发送出去。详情见README.md
+        /*if (Build.VERSION.SDK_INT >= 23) {//权限请求是异步的，不阻塞UI线程。 20170829;   在android 8.0 26 版本系统上如果不进行申请权限，广播是无法发送出去。详情见README.md
 //            checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE");
             requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"
 //                    , "android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"
                     , COM_JIEK_MYPERMISSION}, 1000);
-        }
+        }*/
         log("测试是否是阻塞式: 结论是非阻塞式。");
         File file = new File("/mnt/sdcard/");
         if (file.exists() && file.isDirectory()) {
@@ -77,8 +77,8 @@ public class MainActivity extends FragmentActivity {
         Intent intent = new Intent(ACTION_MYPERMISSION);
         intent.putExtra("hello", this.getClass().getName());
         intent.putExtra("time", System.currentTimeMillis());
-        sendBroadcast(intent);
-//        sendBroadcast(intent, COM_JIEK_MYPERMISSION);//带权限广播
+//        sendBroadcast(intent);
+        sendBroadcast(intent, COM_JIEK_MYPERMISSION);//带权限广播
         log("sendBroadcast");
     }
 
