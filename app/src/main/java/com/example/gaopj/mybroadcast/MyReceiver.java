@@ -12,5 +12,10 @@ public class MyReceiver extends BroadcastReceiver {
         Log.e("Hello", this.getClass().getName());
         Log.e("Hello", "hello="+intent.getStringExtra("hello"));
         Log.e("Hello", "time="+intent.getLongExtra("time", 0));
+        if(isOrderedBroadcast()) {//当为有序广播时，可进行流产处理。
+            abortBroadcast();
+        }
+        setResultExtras(intent.getExtras());//设置传递数据
+        String data = getResultData();//获取传参
     }
 }

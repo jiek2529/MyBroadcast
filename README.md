@@ -126,7 +126,7 @@ registerReceiver(receiver, intentFilter);
 
 ###abortReceiver tips
 
-1. __当使用sendBroadcast发广播，接受器中使用 abortReceiver()中断时，是不能中断传播的，而会报以下运行时异常，但不会崩溃，也不用捕获__
+1. __当使用sendBroadcast发广播，接受器中使用 abortBroadcast()中断时，是不能中断传播的，而会报以下运行时异常，但不会崩溃，也不用捕获__
 
 ```
 	BroadcastReceiver: BroadcastReceiver trying to return result during a non-ordered broadcast
